@@ -1,5 +1,8 @@
 #!/bin/bash
-DATETIME=`date +%y%m%d-%H_%M_%S`
+
+#DATETIME=`date +%y%m%d-%H_%M_%S`
+DATETIME=`date +%y%m%d`
+DATETIME_OLD=`date -d "15 days ago" +%y%m%d`
 SRC=$1 #source 
 DST=$2 #destination SPACE NAME
 GIVENNAME=$3 #prefix name tar.gz
@@ -58,12 +61,39 @@ dumpDatabases(){
     return 0
 }
 
+removeOldBackupDB(){
+     echo "\n##### REMOVE OLD BACKUP DBS SPACE #####\n"
+    if s3cmd rm s3://$DST$DATABASE_NAME-$GIVENNAME-$DATETIME_OLD.sql; then
+        echo "\n##### Done remove files dbs to s3://"$DST" #####\n"
+        #rm -rf ~/$DATABASE_NAME-$GIVENNAME-$DATETIME.sql
+        return 0
+    else
+        echo "\n##### Failed remove files dbs Space #####\n"
+        return 1
+    fi
+}
+
+removeOldBackupFile(){
+     echo "\n##### REMOVE OLD BACKUP SPACE #####\n"
+    if s3cmd rm s3://$DST$GIVENNAME-$DATETIME_OLD.tar.gz; then
+        echo "\n##### Done remove files file to s3://"$DST" #####\n"
+        #rm -rf ~/$DATABASE_NAME-$GIVENNAME-$DATETIME.sql
+        return 0
+    else
+        echo "\n##### Failed remove files file Space #####\n"
+        return 1
+    fi
+}
+#echo "$DATETIME";
+#echo "$DATETIME_OLD";
 if [ ! -z "$GIVENNAME" ]; then
     if tarandzip; then
         movetoSpace
 	if dumpDatabases; then
 	    movetoSpaceDB
 	fi
+    removeOldBackupDB
+    removeOldBackupFile
     else
         showhelp
     fi

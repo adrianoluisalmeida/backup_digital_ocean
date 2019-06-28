@@ -8,10 +8,11 @@ Uma adptação de [bkupscript.sh](https://github.com/mwikya/bash_scripts/blob/ef
 2. Realiza dump base de dados mysql
 3. Compacta pasta do projeto 
 4. Envia usando [s3cmd](https://www.digitalocean.com/docs/spaces/resources/s3cmd/) para digitalocean
+5. Remove o backup de 15 dias atrás, ou seja, guarda sempre o backup dos últimos 14 dias
 
 #### Próximas etapas
 
-- Remover backups antigos
+- Remover backups antigos - OK - 28/06/19
 - Enviar log para slack ou salvar localmente
 
 ### Exemplo de uso 
