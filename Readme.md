@@ -7,11 +7,12 @@ para envio de logs para o slack.
 
 #### Etapas realizadas atualmente
 
-1. Escript para backups criado para executar na digitalocean droplet.
-2. Realiza dump base de dados mysql
-3. Compacta pasta do projeto 
-4. Envia usando [s3cmd](https://www.digitalocean.com/docs/spaces/resources/s3cmd/) para digitalocean
-5. Remove o backup de 15 dias atrás, ou seja, guarda sempre o backup dos últimos 14 dias
+Script para backups na digitalocean droplet.
+1. Realiza dump base de dados mysql
+2. Compacta pasta do projeto 
+3. Envia usando [s3cmd](https://www.digitalocean.com/docs/spaces/resources/s3cmd/) para digitalocean
+4. Remove o backup de 15 dias atrás, ou seja, guarda sempre o backup dos últimos 14 dias
+5. Grava log no slack de sucesso ou erro ao enviar base de dados e arquivos para o space
 
 #### Próximas etapas
 
