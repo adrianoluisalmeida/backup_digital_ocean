@@ -32,14 +32,14 @@ Onde:
 Antes de fazer o agendamento na crontab é necessário verificar se o horário está correto no servidor, para isso digite no terminal
 
 ```
-data
+$ data
 //Fri Jun 28 17:09:03 -03 2019
 ```
 
 Caso a data esteja errada, ajuste a time zone:
 
 ```
-dpkg-reconfigure tzdata
+$ sudo dpkg-reconfigure tzdata
 //Current default time zone: 'America/Sao_Paulo'
 //Local time is now:      Fri Jun 28 17:08:41 -03 2019.
 //Universal Time is now:  Fri Jun 28 20:08:41 UTC 2019.
@@ -68,8 +68,8 @@ Exemplo Para executar o backup **todos os dias as 3 da madrugada**
 
 Basta adicionar o comando acima no final do arquivo */etc/crontab* e reiniciar a cron que estará configurado:
 ```
-sudo chmod +x ~/bkupscript.sh //Permissão no arquivo que será executado.
-sudo /etc/init.d/cron restart
+$ sudo chmod +x ~/bkupscript.sh //Permissão no arquivo que será executado.
+$ sudo /etc/init.d/cron restart
 ```
 
 
@@ -77,6 +77,6 @@ sudo /etc/init.d/cron restart
 
 [s3cmd 2.x Setup](https://www.digitalocean.com/docs/spaces/resources/s3cmd/)   
 [s3cmd 2.x Usage](https://www.digitalocean.com/docs/spaces/resources/s3cmd-usage/)   
-[Example Code](https://github.com/mwikya/bash_scripts/blob/eff6a7726ad194d428a24b5bc4647684b3e074f7/data_backup/bkupscript.sh)
-[DATA E HORA DO SISTEMA](https://www.vivaolinux.com.br/dica/Data-e-hora-do-sistema)
-[Cron time string format](https://support.acquia.com/hc/en-us/articles/360004224494-Cron-time-string-format)
+[Example Code](https://github.com/mwikya/bash_scripts/blob/eff6a7726ad194d428a24b5bc4647684b3e074f7/data_backup/bkupscript.sh)    
+[DATA E HORA DO SISTEMA](https://www.vivaolinux.com.br/dica/Data-e-hora-do-sistema)   
+[Cron time string format](https://support.acquia.com/hc/en-us/articles/360004224494-Cron-time-string-format)    
