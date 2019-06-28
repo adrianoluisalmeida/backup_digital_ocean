@@ -35,21 +35,25 @@ movetoSpace(){
     echo "\n##### MOVING TO SPACE #####\n"
     if s3cmd put $GIVENNAME-$DATETIME.tar.gz s3://$DST; then
         echo "\n##### Done moving files to s3://"$DST" #####\n"
-	rm -rf ~/$GIVENNAME-$DATETIME.tar.gz
+	    rm -rf ~/$GIVENNAME-$DATETIME.tar.gz
+        ~/backup_digital_ocean/slack.sh '#channel1' "\n##### Arquivos enviados para s3://"$DST" #####\n"
         return 0
     else
         echo "\n##### Failed to move files to the Space #####\n"
+        ~/backup_digital_ocean/slack.sh '#channel1'  "\n##### Falhou ao enviar os arquivos para o space"
         return 1
     fi
 }
 movetoSpaceDB(){
-    echo "\n##### MOVING TO SPACE #####\n"
+    echo "\n##### MOVING TO DATABASE SPACE #####\n"
     if s3cmd put $DATABASE_NAME-$GIVENNAME-$DATETIME.sql s3://$DST; then
         echo "\n##### Done moving files dbs to s3://"$DST" #####\n"
+        ~/backup_digital_ocean/slack.sh '#channel1' "\n##### Banco de dados enviado para s3://"$DST" #####\n"
         rm -rf ~/$DATABASE_NAME-$GIVENNAME-$DATETIME.sql
         return 0
     else
         echo "\n##### Failed to move files dbs to the Space #####\n"
+        ~/backup_digital_ocean/slack.sh '#channel1'  "\n##### Falhou ao enviar banco de dados para o space"
         return 1
     fi
 }

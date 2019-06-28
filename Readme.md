@@ -2,6 +2,9 @@
 
 Uma adptação de [bkupscript.sh](https://github.com/mwikya/bash_scripts/blob/eff6a7726ad194d428a24b5bc4647684b3e074f7/data_backup/bkupscript.sh)
 
+Utilização do código [Shell/Bash script for sending slack messages.](https://gist.github.com/andkirby/67a774513215d7ba06384186dd441d9e)
+para envio de logs para o slack.
+
 #### Etapas realizadas atualmente
 
 1. Escript para backups criado para executar na digitalocean droplet.
@@ -13,7 +16,9 @@ Uma adptação de [bkupscript.sh](https://github.com/mwikya/bash_scripts/blob/ef
 #### Próximas etapas
 
 - Remover backups antigos - OK - 28/06/19
-- Enviar log para slack ou salvar localmente
+- Enviar log para slack ou salvar localmente - OK - 28/06/19
+
+Envio de logs para o slack
 
 ### Exemplo de uso 
 
@@ -73,7 +78,25 @@ $ sudo chmod +x ~/bkupscript.sh //Permissão no arquivo que será executado.
 $ sudo /etc/init.d/cron restart
 ```
 
+#SLACK
 
+Para usar o script de envio automático de log para o slack é necessário declarar as seguintes váriaveis no arquivo **~/.slackrc**
+
+   - APP_SLACK_WEBHOOK
+   - APP_SLACK_CHANNEL (optional)
+   - APP_SLACK_USERNAME (optional)
+   - APP_SLACK_ICON_EMOJI (optional)
+
+e dar permissão 
+```
+sudo chmod -R 777 ~/.slackrc
+
+//Testando envio de mensagens com o slack
+./slack.sh '#channel1' 'testando script'
+
+Altere no bkupscript.sh onde diz #channel1 para o seu canal que irá receber os logs no slack.
+
+```
 ### Links úteis
 
 [s3cmd 2.x Setup](https://www.digitalocean.com/docs/spaces/resources/s3cmd/)   
@@ -81,3 +104,4 @@ $ sudo /etc/init.d/cron restart
 [Example Code](https://github.com/mwikya/bash_scripts/blob/eff6a7726ad194d428a24b5bc4647684b3e074f7/data_backup/bkupscript.sh)    
 [DATA E HORA DO SISTEMA](https://www.vivaolinux.com.br/dica/Data-e-hora-do-sistema)   
 [Cron time string format](https://support.acquia.com/hc/en-us/articles/360004224494-Cron-time-string-format)    
+[SCRIPT SLACK](https://gist.github.com/andkirby/67a774513215d7ba06384186dd441d9e)
